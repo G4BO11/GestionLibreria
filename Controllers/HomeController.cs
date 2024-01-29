@@ -1,31 +1,79 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using GestionLibreriaPrueba.Models;
+using GestionLibreriaPrueba.DTO;
+using Microsoft.EntityFrameworkCore;
 
 namespace GestionLibreriaPrueba.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private GestionLibreriaContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, GestionLibreriaContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> IndexAsync()
+    {
+        var libros = await _context.Libros.Include(l => l.Autor).ToListAsync();
+        return View(libros);
+    }
+    public async  Task<IActionResult> NuevoLibro()
+    {
+        var autores = await _context.Autores.Select(a => new AutorDto
+        {
+            Id = a.AutorId,
+            Nombre = a.Nombre
+        }).ToListAsync();
+
+        return View(autores);
+    }
+    [HttpPost]
+    public async Task<IActionResult> NuevoLibro(LibroInsertDto libroInsertDto)
+    {
+        Libro libro = new()
+        {
+            LibTitulo = libroInsertDto.Titulo,
+            LibGenero = libroInsertDto.Genero,
+            AutorID = libroInsertDto.AutorId
+        };
+
+        await _context.Libros.AddAsync(libro);
+        await _context.SaveChangesAsync();
+
+        LibroDto libroDto = new()
+        {
+            Id = libro.LibroID,
+            Titulo = libro.LibTitulo,
+            Genero = libro.LibGenero,
+            AutorId = libro.AutorID
+        };
+        return RedirectToAction("Index");
+    }
+    public IActionResult NuevoAutor()
     {
         return View();
     }
-
-    public IActionResult Privacy()
+    [HttpPost]
+    public async Task<IActionResult> NuevoAutor(AutorInsertDto autorInsertDto)
     {
-        return View();
-    }
+        Autor autor = new()
+        {
+            Nombre = autorInsertDto.Nombre
+        };
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        await _context.Autores.AddAsync(autor);
+        await _context.SaveChangesAsync();
+
+        AutorDto autorDto = new()
+        {
+            Nombre = autor.Nombre
+        };
+
+        return RedirectToAction("Index");
     }
 }

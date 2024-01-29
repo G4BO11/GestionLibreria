@@ -1,0 +1,29 @@
+@using GestionLibreriaPrueba.DTO
+
+@model IEnumerable<AutorDto>
+@{
+    ViewData["Title"] = "Nuevo Libro";
+}
+
+<h2 class="text-white text-3xl font-bold mb-4">Nuevo Libro</h2>
+<form asp-controller="Home" asp-action="NuevoLibro" class="flex flex-col gap-y-5">
+    <input
+        class="h-12 text-yellow-400 font-semibold rounded-2xl px-5 bg-yellow-500/10 backdrop-blur-lg placeholder:text-yellow-50/20 outline-none"
+        type="text" placeholder="Titulo" name="Titulo" />
+    <input
+        class="h-12 text-yellow-400 font-semibold rounded-2xl px-5 bg-yellow-500/10 backdrop-blur-lg placeholder:text-yellow-50/20 outline-none"
+        type="text" placeholder="Genero" name="Genero" />
+    <select
+        class="h-12 text-yellow-400 font-semibold rounded-2xl px-5 bg-yellow-500/10 backdrop-blur-lg placeholder:text-yellow-50/20 outline-none"
+        type="text" placeholder="Select Autores" name="AutorId">
+        @foreach (var autor in Model)
+        {
+            <option class="text-black" value="@autor.Id">@autor.Nombre</option>
+        }
+    </select> 
+    <div
+        class="bg-yellow-50/10 rounded-xl p-1 shadow-[0px_4px_20px_1px_rgba(255,200,0,0.1)] hover:shadow-[0px_4px_20px_2px_rgba(255,200,0,0.2)] duration-150">
+        <button
+            class="border-dashed border-2 border-amber-400 w-full rounded-lg p-2 font-bold uppercase text-amber-400 text-xl">Enviar</button>
+    </div>
+</form>

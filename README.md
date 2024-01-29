@@ -37,11 +37,11 @@ dotnet run
 
 Estos son los comandos que puedes utilizar en la terminal para ejecutar el proyecto si es necesario:
 
-| Comando            | Accion                                      |
-| :----------------- | :------------------------------------------ |
-| `pnpm install`     | Installs dependencies                       |
-| `dotnet --version` | Build your production site to `./dist/`     |
-| `dotnet run`       | Starts local dev server at `localhost:4321` |
+| Comando            | Accion                                |
+| :----------------- | :------------------------------------ |
+| `pnpm install`     | Instalar Dependecias (tailwind)       |
+| `dotnet --version` | Te muestra que version de .NET tienes |
+| `dotnet run`       | Ejecuta el proyecto                   |
 
 ## 🗃️ Diagrama Entidad Relacion
 

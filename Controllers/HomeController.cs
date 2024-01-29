@@ -19,10 +19,20 @@ public class HomeController : Controller
 
     public async Task<IActionResult> IndexAsync()
     {
-        var libros = await _context.Libros.Include(l => l.Autor).ToListAsync();
+        var libros = await _context.Libros
+            .Include(l => l.Autor)
+            .Select(l => new LibroDto
+            {
+                Id = l.LibroID,
+                Titulo = l.LibTitulo,
+                Genero = l.LibGenero,
+                AutorId = l.AutorID,
+                AutorNombre = l.Autor.Nombre
+            })
+            .ToListAsync();
         return View(libros);
     }
-    public async  Task<IActionResult> NuevoLibro()
+    public async Task<IActionResult> NuevoLibro()
     {
         var autores = await _context.Autores.Select(a => new AutorDto
         {
@@ -45,13 +55,6 @@ public class HomeController : Controller
         await _context.Libros.AddAsync(libro);
         await _context.SaveChangesAsync();
 
-        LibroDto libroDto = new()
-        {
-            Id = libro.LibroID,
-            Titulo = libro.LibTitulo,
-            Genero = libro.LibGenero,
-            AutorId = libro.AutorID
-        };
         return RedirectToAction("Index");
     }
     public IActionResult NuevoAutor()
@@ -68,11 +71,6 @@ public class HomeController : Controller
 
         await _context.Autores.AddAsync(autor);
         await _context.SaveChangesAsync();
-
-        AutorDto autorDto = new()
-        {
-            Nombre = autor.Nombre
-        };
 
         return RedirectToAction("Index");
     }

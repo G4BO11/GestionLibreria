@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
-@model IEnumerable<Libro>
+@model IEnumerable<LibroDto>
 
 
 <article class="grid grid-cols-2 gap-10">
@@ -42,10 +42,10 @@
             {
                 <div class="w-full aspect-[9/13] bg-gradient-to-bl from-amber-400 to-amber-300 rounded-md p-5 flex flex-col justify-between shadow-[0px_2px_20px_4px_rgba(255,200,0,0.2)]">
                     <div>
-                        <p class="font-bold text-2xl">@libro.LibTitulo</p>
-                        <p class="text-base font-semibold">@libro.Autor.Nombre</p>
+                        <p class="font-bold text-2xl">@libro.Titulo</p>
+                        <p class="text-base font-semibold">@libro.AutorNombre</p>
                     </div>
-                    <p class="self-end">@libro.LibGenero</p>
+                    <p class="self-end">@libro.Genero</p>
                 </div>
             }
         </div>

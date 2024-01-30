@@ -21,8 +21,14 @@
     const inputNombreAutor = document.getElementById("inputNombreAutor");
 
     function updateSubmitStatus() {
-        btnSubmit.disabled = inputNombreAutor.value === "";
+        const sendEstatus = inputNombreAutor.value === "";
+        if (sendEstatus) {
+            btnSubmit.setAttribute("disabled", "disabled");
+        } else {
+            btnSubmit.removeAttribute("disabled");
+        }
     }
 
     inputNombreAutor.addEventListener('input', updateSubmitStatus);
     updateSubmitStatus();
+</script>

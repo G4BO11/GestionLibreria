@@ -1,10 +1,21 @@
+using GestionLibreriaPrueba.DTO;
 using GestionLibreriaPrueba.Models;
+using GestionLibreriaPrueba.Repository;
+using GestionLibreriaPrueba.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Repository
+builder.Services.AddScoped<IRepository<Libro>, LibroRepository>();
+builder.Services.AddScoped<IRepository<Autor>, AutorRepository>();
+
+//Services
+builder.Services.AddScoped<ICommonService<LibroDto, LibroInsertDto>, LibroService>();
+builder.Services.AddScoped<ICommonService<AutorDto, AutorInsertDto>, AutorService>();
 
 //Entity Injeccion
 builder.Services.AddDbContext<GestionLibreriaContext>(options =>

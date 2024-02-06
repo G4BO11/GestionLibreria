@@ -33,4 +33,14 @@ public class AutorService : ICommonService<AutorDto, AutorInsertDto>
             Nombre = a.Nombre
         });
     }
+
+    public Task<AutorDto> GetById()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<AutorDto> GetById(int id)
+    {
+        throw new NotImplementedException();
+    }
 }

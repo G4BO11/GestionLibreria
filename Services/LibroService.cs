@@ -39,4 +39,20 @@ public class LibroService : ICommonService<LibroDto, LibroInsertDto>
         });
     }
 
+    public async Task<LibroDto> GetById(int id)
+    {
+        var libro = await _libroRepository.GetById(id);
+
+        var libroDto = new LibroDto()
+        {
+            Id = libro.LibroID,
+            Titulo = libro.LibTitulo,
+            Genero = libro.LibGenero,
+            AutorId = libro.Autor.AutorId,
+            AutorNombre = libro.Autor.Nombre,
+            ListComentarios = libro.Comentarios
+        };
+
+        return libroDto;
+    }
 }

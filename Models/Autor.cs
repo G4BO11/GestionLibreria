@@ -7,6 +7,7 @@ public class Autor
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int AutorId { get; set; }
-    public string Nombre { get; set; }
-    public virtual ICollection<Libro> Libros { get; set; }
+    [Required(ErrorMessage = "Campo requerido")]
+    public string Nombre { get; set; } = null!;
+    public virtual ICollection<Libro> Libros { get; set; } = null!;
 }

@@ -17,6 +17,11 @@ public class AutorRepository : IRepository<Autor>
     public async Task<IEnumerable<Autor>> Get()
         => await _context.Autores.ToListAsync();
 
+    public Task<Autor> GetById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task Save()
         => await _context.SaveChangesAsync();
 }

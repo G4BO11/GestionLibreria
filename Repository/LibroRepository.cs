@@ -17,6 +17,15 @@ public class LibroRepository : IRepository<Libro>
     public async Task<IEnumerable<Libro>> Get() =>
         await _context.Libros.Include(l => l.Autor).ToListAsync();
 
+    public async Task<Libro> GetById(int id)
+    {
+        var libroById = await _context.Libros
+                                    .Include(l => l.Autor)
+                                    .Include(l => l.Comentarios)
+                                    .FirstOrDefaultAsync(l => l.LibroID == id);
+        return libroById;
+    }
+
     public async Task Save()
         => await _context.SaveChangesAsync();
 }

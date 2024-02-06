@@ -1,0 +1,54 @@
+@model LibroDto
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<h1 class="text-3xl font-semibold text-white mb-2">Detalle del libro</h1>
+<hr>
+<article class="flex gap-10 text-white py-5">
+    <figure class="grid aspect-[2/3] min-w-72  max-h-[500px] place-items-center rounded-lg bg-amber-400">
+        <p>Aqui la imagen del libro</p>
+    </figure>
+    <div class="flex flex-col">
+        <h2 class="text-2xl font-semibold capitalize">@Model.Titulo</h2>
+        <p class="mb-7 leading-[1.4em] text-white/75">@Model.AutorNombre</p>
+        <div class="">
+            <div class="grid grid-cols-[auto_2fr] gap-x-8 gap-y-3">
+                <span class="font-semibold">Descripcion:</span>
+                <span class="text-pretty">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate labore
+                    maxime voluptate. Laudantium aliquid voluptatum porro atque hic, nobis ex numquam cumque sunt
+                    corrupti quam necessitatibus itaque praesentium, omnis consectetur?</span>
+                <span class="font-semibold">Paginas:</span>
+                <span class="">289</span>
+                <span class="font-semibold">Año:</span>
+                <span class="">2007</span>
+                <span class="font-semibold">Genero:</span>
+                <span class="">@Model.Genero</span>
+                <span class="font-semibold">Editorial:</span>
+                <span class="">Oveja Negra</span>
+            </div>
+        </div>
+    </div>
+</article>
+<article class="">
+    <h2 class="text-white font-bold text-2xl mb-2">Comentarios</h2>
+    <hr>
+    @if (Model.ListComentarios != null && Model.ListComentarios.Any())
+    {
+        @foreach (var comentario in Model.ListComentarios)
+        {
+            <div class="grid grid-cols-3 gap-5 py-6 px-4">
+                <p class="text-white/70 grid place-content-center italic rounded-lg h-44 bg-zinc-800">
+                    "@comentario.ComentarioContenido"
+                </p>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="grid place-items-center py-20">
+            <p class="text-white/70 text-2xl font-bold w-80 text-center">No hay comentarios aun de este libro</p>
+        </div>
+    }
+</article>

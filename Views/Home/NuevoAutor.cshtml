@@ -1,16 +1,17 @@
 @{
     ViewData["Title"] = "Nuevo Autor";
 }
+
 <h2 class="text-white text-3xl font-bold mb-3">Nuevo Autor</h2>
 <form asp-controller="Home" asp-action="NuevoAutor" class="flex flex-col gap-y-5">
     <input
-        class="h-12 text-yellow-400 font-semibold rounded-2xl px-5 bg-yellow-500/10 backdrop-blur-lg placeholder:text-yellow-50/20 outline-none"
+        class="h-12 text-slate-400 font-semibold rounded-2xl px-5 bg-slate-500/10 backdrop-blur-lg placeholder:text-slate-50/20 outline-none"
         type="text" name="Nombre" placeholder="Nombre del Autor" id="inputNombreAutor" />
-    <div
-        class="bg-yellow-50/10 rounded-xl p-1 shadow-[0px_4px_20px_1px_rgba(255,200,0,0.1)] hover:shadow-[0px_4px_20px_2px_rgba(255,200,0,0.2)] duration-150">
+    <!-- Boton -->
+    <div class="bg-slate-50/10 rounded-xl p-1 duration-150">
         <button id="btnSubmit" disabled class="
-                border-dashed border-2 border-amber-400 w-full rounded-lg p-2 font-bold uppercase text-amber-400 text-xl
-                disabled:shadow-none disabled:border-gray-600 disabled:text-gray-600 group-disabled:hover:shadow-none
+                border-dashed border-2 border-gray-400 w-full rounded-lg p-2 font-bold uppercase text-gray-400 text-lg
+                disabled:border-gray-600 disabled:text-gray-600
                 ">
             Enviar
         </button>

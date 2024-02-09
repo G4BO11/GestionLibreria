@@ -1,28 +1,35 @@
 using GestionLibreriaPrueba.Models;
-using Microsoft.EntityFrameworkCore;
+using GestionLibreriaPrueba.Repository;
+namespace GestionLibreriaPrueba.Services;
 
-public class ComentarioService
+public class ComentarioService : ICommonService<ComentarioDto, ComentarioInsertDto>
 {
-    private readonly GestionLibreriaContext _context;
+    private IRepository<Comentario> _comentarioRepository;
 
-    public ComentarioService(GestionLibreriaContext context)
+    public ComentarioService(IRepository<Comentario> comentarioRepository)
     {
-        _context = context;
+        _comentarioRepository = comentarioRepository;
     }
-
-    public async Task<DetalleLibroViewModel> GetComentarioById(int id)
+    public async Task Create(ComentarioInsertDto insertDto)
     {
-        var libro = await _context.Libros
-                                    .Include(l => l.Autor)
-                                    .FirstOrDefaultAsync(l => l.LibroID == id);
-        var comentarios = await _context.Comentarios.Where(c => c.LibroID == id).ToListAsync();
-
-        var viewModel = new DetalleLibroViewModel
+        Comentario comentario = new()
         {
-            Libro = libro,
-            Comentarios = comentarios
+            ComentarioContenido = insertDto.Contenido,
+            ComentarioFecha = insertDto.Fecha,
+            LibroID = insertDto.LibroID
         };
 
-        return viewModel;
+        await _comentarioRepository.Create(comentario);
+        await _comentarioRepository.Save();
+    }
+
+    public Task<IEnumerable<ComentarioDto>> Get()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<ComentarioDto> GetById(int id)
+    {
+        throw new NotImplementedException();
     }
 }

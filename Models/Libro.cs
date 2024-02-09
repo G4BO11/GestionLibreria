@@ -13,6 +13,6 @@ public class Libro
     public int AutorID { get; set; }
 
     [ForeignKey("AutorID")]
-    public virtual required Autor Autor { get; set; }
-    public virtual required ICollection<Comentario> Comentarios { get; set; }
+    public virtual Autor? Autor { get; set; }
+    public virtual ICollection<Comentario> Comentarios { get; set; }
 }

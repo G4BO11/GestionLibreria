@@ -3,52 +3,147 @@
 @{
     ViewData["Title"] = "Detalle";
 }
-
-<h1 class="text-3xl font-semibold text-white mb-2">Detalle del libro</h1>
+<h1 class="text-xl font-semibold text-white mb-1">Detalle del libro</h1>
 <hr>
-<article class="flex gap-10 text-white py-5">
-    <figure class="grid aspect-[2/3] min-w-72  max-h-[500px] place-items-center rounded-lg bg-amber-400">
+<article class="flex gap-10 text-white py-5 px-12">
+    <figure
+        class="grid aspect-[2/4] min-w-72 max-h-[400px] place-items-center rounded-lg bg-slate-400/50 backdrop-blur-lg">
         <p>Aqui la imagen del libro</p>
     </figure>
     <div class="flex flex-col">
         <h2 class="text-2xl font-semibold capitalize">@Model.Titulo</h2>
         <p class="mb-7 leading-[1.4em] text-white/75">@Model.AutorNombre</p>
         <div class="">
-            <div class="grid grid-cols-[auto_2fr] gap-x-8 gap-y-3">
+            <div class="grid grid-cols-[auto_2fr] gap-x-6 gap-y-2">
                 <span class="font-semibold">Descripcion:</span>
                 <span class="text-pretty">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate labore
                     maxime voluptate. Laudantium aliquid voluptatum porro atque hic, nobis ex numquam cumque sunt
                     corrupti quam necessitatibus itaque praesentium, omnis consectetur?</span>
-                <span class="font-semibold">Paginas:</span>
+                <span class="font-medium text-end">Paginas:</span>
                 <span class="">289</span>
-                <span class="font-semibold">Año:</span>
+                <span class="font-medium text-end">Año:</span>
                 <span class="">2007</span>
-                <span class="font-semibold">Genero:</span>
+                <span class="font-medium text-end">Genero:</span>
                 <span class="">@Model.Genero</span>
-                <span class="font-semibold">Editorial:</span>
+                <span class="font-medium text-end">Editorial:</span>
                 <span class="">Oveja Negra</span>
             </div>
         </div>
     </div>
 </article>
-<article class="">
-    <h2 class="text-white font-bold text-2xl mb-2">Comentarios</h2>
-    <hr>
-    @if (Model.ListComentarios != null && Model.ListComentarios.Any())
-    {
-        @foreach (var comentario in Model.ListComentarios)
+<h2 class="text-white font-bold text-xl mb-1">Comentarios</h2>
+<hr>
+@if (Model.ListComentarios != null && Model.ListComentarios.Any())
+{
+    <article class="flex flex-col gap-6 px-6 py-5 text-white">
+        <!-- Contenedor CON comentarios -->
+        <div id="ContComentarioGrande" class=" w-full min-w-80 cursor-pointer rounded-lg bg-gray-800/60 p-1">
+            <p id="parrafoComentario"
+                class="flex h-full w-full items-center justify-center gap-x-2 rounded-md border-2 border-dashed border-gray-600 px-4 py-4 text-slate-500 duration-200 hover:border-gray-400 hover:text-slate-300">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
+                    stroke="currentColor" class="h-5 w-5">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 0 1 1.037-.443 48.282 48.282 0 0 0 5.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z">
+                    </path>
+                </svg>
+                <span class=" text-sm font-semibold">+ Agregar un Nuevo Comentario</span>
+            </p>
+            <!-- Formulario del nuevo comentario --->
+            <form id="ContNuevoComentario" class="hidden flex-col gap-y-5" asp-controller="Libro"
+                asp-action="NuevoComentario">
+                <input type="hidden" name="LibroID" value="@Model.Id" />
+                <textarea
+                    class="w-full h-full resize-none rounded-md bg-transparent border-2 border-dashed border-white/50 p-4  outline-none focus:border-white/90"
+                    name="Contenido" id="textAreaComment" rows="6" placeholder="Escribe aquí tu comentario..."></textarea>
+                <div class="flex items-center justify-end gap-5">
+                    <label>Anonimo</label>
+                    <button id="btnSubmit"
+                        class="bg-slate-700 rounded-md p-2 px-4 disabled:text-white/50 disabled:bg-slate-800/60"
+                        type="submit" disabled>
+                        Mandar Comentario
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        @foreach (var comentario in Model.ListComentarios.Reverse())
         {
-            <div class="grid grid-cols-3 gap-5 py-6 px-4">
-                <p class="text-white/70 grid place-content-center italic rounded-lg h-44 bg-zinc-800">
-                    "@comentario.ComentarioContenido"
-                </p>
+            <!-- "Componente Comentario" -->
+            <div class="border-d 0 flex flex-col gap-y-2 rounded-lg border-2 border-gray-500/30 bg-gray-800/60 p-5 break-words">
+                <p class="text-pretty italic">"@comentario.ComentarioContenido"</p>
+                <p class="text-right text-sm text-white/70">Anonimo<span> • Now</span></p>
             </div>
         }
-    }
-    else
-    {
-        <div class="grid place-items-center py-20">
-            <p class="text-white/70 text-2xl font-bold w-80 text-center">No hay comentarios aun de este libro</p>
+    </article>
+}
+else
+{
+    <!-- Componente cuando no hay comentarios -->
+    <article class="flex flex-col items-center py-5 pt-10 text-white">
+        <h3 class="text-white/8 text-3xl font-medium"> No hay comentarios por el momento </h3>
+        <p class="mb-5 text-white/75"> Se el primero en comentar sobre el libro </p>
+        <!-- Contenedor -->
+        <div id="ContComentario" class="w-full min-w-80 cursor-pointer rounded-lg bg-gray-800/60 p-1">
+            <p id="parrafoComentario"
+                class="flex h-full w-full items-center justify-center gap-x-2 rounded-md border-2 border-dashed border-gray-600 px-4 py-4 text-slate-500 duration-200 hover:border-gray-400 hover:text-slate-300">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
+                    stroke="currentColor" class="h-5 w-5">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 0 1 1.037-.443 48.282 48.282 0 0 0 5.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z">
+                    </path>
+                </svg>
+                <span class=" text-sm font-semibold"> Agregar un Comentario</span>
+            </p>
+            <form id="ContNuevoComentario" class="hidden flex-col gap-y-5" asp-controller="Libro"
+                asp-action="NuevoComentario">
+                <input type="hidden" name="LibroID" value="@Model.Id" />
+                <textarea
+                    class="w-full h-full resize-none rounded-md bg-transparent border-2 border-dashed border-white/50 p-4  outline-none focus:border-white/90"
+                    name="Contenido" id="textAreaComment" rows="10" placeholder="Escribe aquí tu comentario..."></textarea>
+                <div class="flex items-center justify-end gap-5">
+                    <label>Anonimo</label>
+                    <button id="btnSubmit"
+                        class="bg-slate-800 rounded-md p-2 px-4 disabled:text-white/50 disabled:bg-slate-800/60"
+                        type="submit" disabled>Mandar Comentario</button>
+                </div>
+            </form>
         </div>
+    </article>
+}
+<script>
+    //Variables
+    const contComentario = document.getElementById("ContComentario");
+    const contComentarioGrande = document.getElementById("ContComentarioGrande");
+    const parrafoComentario = document.getElementById("parrafoComentario");
+    const contNuevoComentario = document.getElementById("ContNuevoComentario");
+    const textAreaComment = document.getElementById("textAreaComment");
+    const btnSubmit = document.getElementById("btnSubmit");
+
+    // Eventos y funciones
+    contComentario?.addEventListener("click", AgrandarComentario);
+    contComentarioGrande?.addEventListener("click", AgrandarComentario);
+    textAreaComment?.addEventListener("input", updateSubmitStatus);
+    updateSubmitStatus();
+
+    // Función para agrandar el comentario
+    function AgrandarComentario() {
+        contComentario?.classList.add("min-h-[300px]", "p-5");
+        contComentario?.classList.replace("w-full", "w-[700px]");
+        contComentarioGrande?.classList.add("min-h-auto", "p-5");
+        parrafoComentario?.classList.add("hidden");
+        contNuevoComentario?.classList.replace("hidden", "flex");
+        scrollIntoViewSmooth(contComentario);
+        scrollIntoViewSmooth(contComentarioGrande);
     }
-</article>
+
+    // Función para actualizar el estado del botón de enviar
+    function updateSubmitStatus() {
+        const sendEstatus = textAreaComment?.value === "";
+        btnSubmit.disabled = sendEstatus;
+    }
+
+    // Función para desplazar suavemente la vista hacia un elemento
+    function scrollIntoViewSmooth(element) {
+        element?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+</script>

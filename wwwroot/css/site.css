@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -13,5 +13,8 @@
 ::-webkit-scrollbar-thumb {
     margin-right: 5px;
     border-radius: 5px;
-    background: rgba(194, 147, 5, 0.8);
+    background: rgba(255, 255, 255, 0.6);
+}
+#ContComentario {
+    transition: height 0.5s ease, width 0.5s ease;
 }

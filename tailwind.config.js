@@ -5,7 +5,11 @@ module.exports = {
     './Views/**/*.cshtml'
 ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        sans: ['Dm Sans','sans-serif']
+      }
+    },
   },
   plugins: [],
 }

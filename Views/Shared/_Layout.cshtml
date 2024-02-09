@@ -7,26 +7,30 @@
     <title>@ViewData["Title"] - Libreria</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;0,9..40,1000;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800;1,9..40,900;1,9..40,1000&display=swap"
+        rel="stylesheet">
 </head>
 
-<body class="relative w-full min-h-[100vh] bg-zinc-800">
+<body class="relative w-full min-h-screen bg-zinc-800">
     <div
-        class="absolute top-0 -z-10 w-full min-h-[100%] bg-gray-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-10%,rgba(225,190,0,0.3),rgba(255,255,255,0))]">
+        class="fixed top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
     </div>
-    <header class="flex py-5 px-4 items-center justify-center h-[120px] relative">
-        <a class="text-white font-extrabold text-4xl uppercase flex flex-col leading-8" asp-controller="Home"
+    <header class="relative flex h-[120px] items-center justify-center px-4 py-5">
+        <a class="text-white flex flex-col items-center text-3xl font-bold uppercase leading-8" asp-controller="Home"
             asp-action="Index">
             Gestion
-            <span class="text-[43px] tracking-[0.6px]">Libros</span>
+            <span class="text-[40px] font-[1000]">Libros</span>
         </a>
     </header>
 
     <main role="main" class="flex justify-center">
-        <section class="w-full flex flex-col max-w-[1200px] p-6 px-16 gap-2">
+        <section class="w-full flex flex-col max-w-screen-xl py-6 px-16">
             @RenderBody()
         </section>
     </main>
-
 
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

@@ -18,7 +18,8 @@ public class LibroService : ICommonService<LibroDto, LibroInsertDto>
         {
             LibTitulo = insertDto.Titulo,
             LibGenero = insertDto.Genero,
-            AutorID = insertDto.AutorId
+            AutorID = insertDto.AutorId,
+
         };
 
         await _libroRepository.Create(libro);

@@ -12,10 +12,12 @@ builder.Services.AddControllersWithViews();
 // Repository
 builder.Services.AddScoped<IRepository<Libro>, LibroRepository>();
 builder.Services.AddScoped<IRepository<Autor>, AutorRepository>();
+builder.Services.AddScoped<IRepository<Comentario>, ComentarioRepository>();
 
 //Services
 builder.Services.AddScoped<ICommonService<LibroDto, LibroInsertDto>, LibroService>();
 builder.Services.AddScoped<ICommonService<AutorDto, AutorInsertDto>, AutorService>();
+builder.Services.AddScoped<ICommonService<ComentarioDto, ComentarioInsertDto>, ComentarioService>();
 
 //Entity Injeccion
 builder.Services.AddDbContext<GestionLibreriaContext>(options =>

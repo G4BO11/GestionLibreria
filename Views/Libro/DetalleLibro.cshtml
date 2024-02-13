@@ -16,17 +16,13 @@
         <div class="">
             <div class="grid grid-cols-[auto_2fr] gap-x-6 gap-y-2">
                 <span class="font-semibold">Descripcion:</span>
-                <span class="text-pretty">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate labore
-                    maxime voluptate. Laudantium aliquid voluptatum porro atque hic, nobis ex numquam cumque sunt
-                    corrupti quam necessitatibus itaque praesentium, omnis consectetur?</span>
-                <span class="font-medium text-end">Paginas:</span>
-                <span class="">289</span>
+                <span class="text-pretty">@Model.Descripcion</span>
                 <span class="font-medium text-end">Año:</span>
-                <span class="">2007</span>
+                <span class="">@Model.Anno</span>
                 <span class="font-medium text-end">Genero:</span>
                 <span class="">@Model.Genero</span>
                 <span class="font-medium text-end">Editorial:</span>
-                <span class="">Oveja Negra</span>
+                <span class="">@Model.Editorial</span>
             </div>
         </div>
     </div>
@@ -71,7 +67,8 @@
             <!-- "Componente Comentario" -->
             <div class="border-d 0 flex flex-col gap-y-2 rounded-lg border-2 border-gray-500/30 bg-gray-800/60 p-5 break-words">
                 <p class="text-pretty italic">"@comentario.ComentarioContenido"</p>
-                <p class="text-right text-sm text-white/70">Anonimo<span> • Now</span></p>
+                <p class="text-right text-sm text-white/70">Anonimo<span> •
+                        @comentario.ComentarioFecha.ToString("yyyy-MM-dd")</span></p>
             </div>
         }
     </article>

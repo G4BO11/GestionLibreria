@@ -18,8 +18,10 @@ public class LibroService : ICommonService<LibroDto, LibroInsertDto>
         {
             LibTitulo = insertDto.Titulo,
             LibGenero = insertDto.Genero,
-            AutorID = insertDto.AutorId,
-
+            LibDescripcion = insertDto.Descripcion,
+            LibAnno = insertDto.Anno,
+            LibEditorial = insertDto.Editorial,
+            AutorID = insertDto.AutorId
         };
 
         await _libroRepository.Create(libro);
@@ -35,6 +37,9 @@ public class LibroService : ICommonService<LibroDto, LibroInsertDto>
             Id = l.LibroID,
             Titulo = l.LibTitulo,
             Genero = l.LibGenero,
+            Descripcion = l.LibDescripcion,
+            Editorial = l.LibEditorial,
+            Anno = l.LibAnno,
             AutorId = l.Autor.AutorId,
             AutorNombre = l.Autor.Nombre
         });
@@ -49,6 +54,9 @@ public class LibroService : ICommonService<LibroDto, LibroInsertDto>
             Id = libro.LibroID,
             Titulo = libro.LibTitulo,
             Genero = libro.LibGenero,
+            Descripcion = libro.LibDescripcion,
+            Editorial = libro.LibEditorial,
+            Anno = libro.LibAnno,
             AutorId = libro.Autor.AutorId,
             AutorNombre = libro.Autor.Nombre,
             ListComentarios = libro.Comentarios

@@ -75,8 +75,16 @@ namespace GestionLibreriaPrueba.Migrations
                     b.Property<int>("AutorID")
                         .HasColumnType("int");
 
+                    b.Property<int>("LibAnno")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LibDescripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LibEditorial")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LibGenero")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LibTitulo")

@@ -10,9 +10,12 @@ public class Libro
     [Required]
     public string? LibTitulo { get; set; }
     public string? LibGenero { get; set; }
+    public string? LibEditorial { get; set; }
+    public int LibAnno { get; set; }
+    public string? LibDescripcion { get; set; }
     public int AutorID { get; set; }
 
     [ForeignKey("AutorID")]
-    public virtual Autor? Autor { get; set; }
+    public virtual Autor Autor { get; set; }
     public virtual ICollection<Comentario> Comentarios { get; set; }
 }

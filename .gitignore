@@ -76,3 +76,4 @@ _[Ss]cripts
 *.vs
 *node_modules
 *.idea
+appsettings.Development.json

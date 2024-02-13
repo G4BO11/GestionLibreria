@@ -8,12 +8,15 @@
         class="h-12 text-slate-400 font-semibold rounded-2xl px-5 bg-slate-500/10 backdrop-blur-lg placeholder:text-slate-50/20 outline-none"
         type="text" name="Nombre" placeholder="Nombre del Autor" id="inputNombreAutor" />
     <!-- Boton -->
-    <div class="bg-slate-50/10 rounded-xl p-1 duration-150">
-        <button id="btnSubmit" disabled class="
-                border-dashed border-2 border-gray-400 w-full rounded-lg p-2 font-bold uppercase text-gray-400 text-lg
-                disabled:border-gray-600 disabled:text-gray-600
-                ">
-            Enviar
+    <div class=" w-full min-w-80 cursor-pointer rounded-lg bg-gray-800/60 p-1">
+        <button id="btnSubmit" disabled class="flex h-full w-full items-center justify-center gap-x-2 rounded-md border-2 border-dashed border-gray-600 px-4 py-3 text-slate-500 duration-200
+                   disabled:border-gray-600/20 disabled:text-slate-500/10">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+            </svg>
+            <span class="text-base font-semibold">+ Crear Nuevo Autor </span>
         </button>
     </div>
 </form>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestionLibreriaPrueba.Migrations
 {
     [DbContext(typeof(GestionLibreriaContext))]
-    [Migration("20240203003244_AddTableComentario")]
-    partial class AddTableComentario
+    [Migration("20240209232236_InicioDB")]
+    partial class InicioDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,8 +78,16 @@ namespace GestionLibreriaPrueba.Migrations
                     b.Property<int>("AutorID")
                         .HasColumnType("int");
 
+                    b.Property<int>("LibAnno")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LibDescripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LibEditorial")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LibGenero")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LibTitulo")
